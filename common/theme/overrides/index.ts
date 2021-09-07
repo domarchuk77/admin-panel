@@ -7,12 +7,20 @@ import Paper from "./Paper";
 import Typography from "./Typography";
 import typography from "../typography";
 import { TypographyOptions } from "@material-ui/core/styles/createTypography";
-import shape from "../shape";
-import shadows from "../shadows";
+import shape, { Shape } from "../shape";
+import shadows, { CustomShadows, customShadows } from "../shadows";
 import breakpoints from "../breakpoints";
+import Card from "./Card";
 
 export interface ITheme extends Theme {
   palette: IPalette;
+  customShadows: CustomShadows;
+  shape: Shape;
+}
+
+export interface IThemeOptions extends ThemeOptions {
+  palette: IPalette;
+  customShadows: CustomShadows;
 }
 
 export const overridesTheme = createTheme({
@@ -20,12 +28,15 @@ export const overridesTheme = createTheme({
   palette: palette,
   shape: shape,
   typography: typography,
-}) as ITheme;
+  shadows: shadows,
+  customShadows: customShadows,
+} as unknown as IThemeOptions) as ITheme;
 
 export const theme = merge(
   Paper(overridesTheme),
   Button(overridesTheme),
   Typography(overridesTheme),
   Input(overridesTheme),
+  Card(overridesTheme),
   overridesTheme
 );

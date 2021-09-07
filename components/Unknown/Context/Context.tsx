@@ -1,16 +1,20 @@
+import React, { useEffect } from "react";
+import firebase from "firebase";
+
 import Snackbar from "@material-ui/core/Snackbar";
-import React, { createContext, useState } from "react";
 import MuiAlert from "@material-ui/core/Alert";
 import { AlertColor } from "@material-ui/core/Alert";
-import { useEffect } from "react";
-import firebase from "firebase";
-import { useRouter } from "next/router";
+import CloseIcon from "@material-ui/icons/Close";
+import LoadingPage from "../LoadingPage";
+import { IconButton } from "@material-ui/core";
+import Box from "@material-ui/core/Box";
 
-export const Context = createContext<ContextProps>({} as ContextProps);
-
+export const Context = React.createContext<ContextProps>({} as ContextProps);
 interface ContextProps {
   setAlert: React.Dispatch<React.SetStateAction<AlertProps>>;
-  login: () => void;
+  signIn: () => void;
+  signOut: any;
+  user?: User | null;
 }
 
 interface AlertProps {
@@ -18,69 +22,83 @@ interface AlertProps {
   severity: AlertColor;
   message: string;
 }
-
 interface User {
-  avatar?: string | null;
-  fullName?: string | null;
+  displayName: string | null;
+  photoURL: string | null;
 }
-const firebaseConfig = {
-  apiKey: "AIzaSyC6uZ6mD3qiXykSjDZwlcAtU_iPKwTQZq4",
-  authDomain: "social-network-32841.firebaseapp.com",
-  projectId: "social-network-32841",
-  storageBucket: "social-network-32841.appspot.com",
-  messagingSenderId: "89759638462",
-  appId: "1:89759638462:web:e30d8a3c278ca7f173cfef",
-  measurementId: "G-99TVNM44JQ",
-};
 
-export const ContextProvider: React.FC = ({ children }) => {
-  const [alert, setAlert] = useState<AlertProps>({
+const ContextProvider: React.FC = ({ children }) => {
+  const [user, setUser] = React.useState<User | null | undefined>(undefined);
+  const [alert, setAlert] = React.useState<AlertProps>({
     show: false,
     severity: "error",
     message: "",
   });
-  const [user, setUser] = useState<User | null>(null);
 
-  const router = useRouter();
   useEffect(() => {
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
+    // firebase.initializeApp(firebaseConfig);
     firebase.auth().onAuthStateChanged((user) => {
-      setUser({ avatar: user?.photoURL, fullName: user?.displayName });
+      console.log("user:", user);
+      if (user) {
+        setUser({ displayName: user.displayName, photoURL: user.photoURL });
+      } else setUser(null);
     });
   }, []);
-  useEffect(() => {
-    const bool = async () => {
-      const a = "a";
-      console.log("A:", a);
-    };
-    bool();
-    console.log(user, firebase.auth());
-  }, [user]);
-  const login = async () => {
+
+  const signIn = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
-    const { user } = await firebase.auth().signInWithPopup(provider);
+    firebase.auth().signInWithPopup(provider);
   };
-  useEffect(() => {
-    router.push("/register");
-  }, []);
-  const logout = () => {
+  // firebase
+  //   .auth()
+  //   .signInWithEmailAndPassword("error@gmail.com", "error@gmail.com")
+  //   .then((userCredential) => {
+  //     // Signed in
+  //     console.log("userCredential:", userCredential);
+  //     // ...
+  //   })
+  //   .catch((error) => {
+  //     console.log("error:", error);
+  //   });
+  // firebase.auth().currentUser?.updateProfile({
+  //   displayName: "Jane Q. User",
+  //   photoURL: "https://example.com/jane-q-user/profile.jpg",
+  // });
+
+  const signOut = () => {
     firebase.auth().signOut();
   };
-
+  if (user === undefined) return <LoadingPage />;
   return (
-    <Context.Provider value={{ setAlert, login }}>
+    <Context.Provider value={{ setAlert, signOut, user, signIn }}>
       {children}
       <Snackbar
         open={alert.show}
-        autoHideDuration={5000}
+        autoHideDuration={6000}
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         onClose={() => setAlert({ ...alert, show: false })}
       >
-        <MuiAlert variant="filled" severity={alert.severity}>
+        <MuiAlert
+          variant="filled"
+          severity={alert.severity}
+          action={
+            <IconButton
+              color="inherit"
+              size="small"
+              sx={{ mt: -0.25 }}
+              onClick={() => {
+                setAlert({ ...alert, show: false });
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+          }
+        >
           {alert.message}
         </MuiAlert>
       </Snackbar>
     </Context.Provider>
   );
 };
+
+export default ContextProvider;

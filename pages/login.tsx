@@ -18,6 +18,10 @@ import { styled } from "@material-ui/styles";
 import AuthLayout from "../Layouts/AuthLayout";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
+import firebase from "firebase";
+import { useContext } from "react";
+import { Context } from "../components/Unknown/Context";
+import { useEffect } from "react";
 
 const Link = styled(BasicLink)(() => ({
   textDecoration: "none",
@@ -25,6 +29,32 @@ const Link = styled(BasicLink)(() => ({
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { setAlert } = useContext(Context);
+  useEffect(
+    () =>
+      setAlert({
+        message: "You can go under demo data or register your account",
+        severity: "info",
+        show: true,
+      }),
+    []
+  );
+  const signIn = async ({
+    email,
+    password,
+  }: {
+    email: string;
+    password: string;
+  }) => {
+    try {
+      await firebase.auth().signInWithEmailAndPassword(email, password);
+    } catch ({ message }) {
+      setAlert({ message, severity: "error", show: true });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -35,16 +65,18 @@ export default function Login() {
 
   const formik = useFormik({
     initialValues: {
-      email: "",
-      password: "",
+      email: "demo@demo.demo",
+      password: "demo12",
       remember: true,
     },
     validationSchema,
-    onSubmit: () => {},
+    onSubmit: (values) => {
+      setIsSubmitting(true);
+      signIn(values);
+    },
   });
 
-  const { errors, touched, values, isSubmitting, handleSubmit, getFieldProps } =
-    formik;
+  const { errors, touched, values, handleSubmit, getFieldProps } = formik;
 
   const handleShowPassword = () => {
     setShowPassword((show) => !show);
@@ -112,7 +144,7 @@ export default function Login() {
             variant="contained"
             loading={isSubmitting}
           >
-            Login
+            Sign In
           </LoadingButton>
         </Form>
       </FormikProvider>

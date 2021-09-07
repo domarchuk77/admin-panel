@@ -1,3 +1,6 @@
+import React from "react";
+import router from "next/router";
+
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
@@ -6,9 +9,10 @@ import Hidden from "@material-ui/core/Hidden";
 import Paper from "@material-ui/core/Paper";
 import Stack from "@material-ui/core/Stack";
 import Typography from "@material-ui/core/Typography";
-import { useContext } from "react";
+
 import GoogleIcon from "../../common/icons/Google.svg";
-import { Context } from "../../components/Unknown/Context/Context";
+import LoadingPage from "../../components/Unknown/LoadingPage";
+import { Context } from "../../components/Unknown/Context";
 
 interface AuthLayoutProps {
   img: string;
@@ -20,7 +24,12 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({
   img,
   greetings,
 }) => {
-  const { login } = useContext(Context);
+  const { signIn, user } = React.useContext(Context);
+
+  if (user) {
+    router.push("/");
+    return <LoadingPage />;
+  }
   return (
     <Box sx={{ display: "flex", minHeight: "100vh" }}>
       <Hidden mdDown>
@@ -49,7 +58,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({
               variant="outlined"
               color="inherit"
               fullWidth
-              onClick={login}
+              onClick={signIn}
             >
               <GoogleIcon />
             </Button>

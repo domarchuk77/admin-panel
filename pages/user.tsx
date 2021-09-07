@@ -1,7 +1,8 @@
-import { AuthenticatedLayout } from "../Layouts/AuthenticatedLayout/AuthenticatedLayout";
+import React from "react";
+import AuthenticatedLayout from "../Layouts/AuthenticatedLayout";
 
 export default function User() {
-  return <div>User</div>;
+  return <></>;
 }
 
 User.getLayout = (page: React.ReactNode) => (

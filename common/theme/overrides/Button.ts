@@ -1,7 +1,5 @@
 import { createTheme, Theme } from "@material-ui/core";
 import { ITheme } from ".";
-import palette from "../palette";
-import { customShadows } from "../shadows";
 
 export default function Button(theme: ITheme) {
   return createTheme({
@@ -13,34 +11,41 @@ export default function Button(theme: ITheme) {
             textTransform: "none",
             padding: theme.spacing(1.5),
             "&:hover": {
-              boxShadow: "none",
+              boxShadow: "unset",
             },
           },
-
-          containedInherit: {
-            color: palette.grey[800],
-            boxShadow: customShadows.z8,
+          text: {
+            padding: theme.spacing(0),
+            minWidth: 1,
+            fontSize: 12,
             "&:hover": {
-              backgroundColor: palette.grey[400],
+              backgroundColor: "unset",
+            },
+          },
+          containedInherit: {
+            color: theme.palette.grey[800],
+            boxShadow: theme.customShadows.z8,
+            "&:hover": {
+              backgroundColor: theme.palette.grey[400],
             },
           },
           containedPrimary: {
-            boxShadow: customShadows.primary,
+            boxShadow: theme.customShadows.primary,
             fontWeight: 700,
           },
           containedSecondary: {
-            boxShadow: customShadows.secondary,
+            boxShadow: theme.customShadows.secondary,
           },
           outlinedInherit: {
-            border: `1px solid ${palette.grey[500_32]}`,
+            border: `1px solid ${theme.palette.grey[500_32]}`,
             "&:hover": {
-              backgroundColor: palette.action.hover,
+              backgroundColor: theme.palette.action.hover,
             },
             height: 48,
           },
           textInherit: {
             "&:hover": {
-              backgroundColor: palette.action.hover,
+              backgroundColor: theme.palette.action.hover,
             },
           },
         },

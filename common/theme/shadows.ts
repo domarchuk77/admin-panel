@@ -1,4 +1,5 @@
 import { alpha } from "@material-ui/core/styles";
+import { Shadows } from "@material-ui/core/styles/shadows";
 import palette from "./palette";
 
 const createShadow = (color: string) => {
@@ -31,7 +32,7 @@ const createShadow = (color: string) => {
     `0px 10px 14px -6px ${transparent1},0px 22px 35px 3px ${transparent2},0px 8px 42px 7px ${transparent3}`,
     `0px 11px 14px -7px ${transparent1},0px 23px 36px 3px ${transparent2},0px 9px 44px 8px ${transparent3}`,
     `0px 11px 15px -7px ${transparent1},0px 24px 38px 3px ${transparent2},0px 9px 46px 8px ${transparent3}`,
-  ];
+  ] as Shadows;
 };
 
 const createCustomShadow = (color: string) => {
@@ -54,6 +55,7 @@ const createCustomShadow = (color: string) => {
 };
 
 export const customShadows = createCustomShadow(palette.grey[500]);
+export type CustomShadows = typeof customShadows;
 
 const shadows = createShadow(palette.grey[500]);
 
