@@ -42,7 +42,7 @@ export default function OrderTimeline() {
         {list.map(({ bgcolor, date, name }, i, arr) => {
           const isLast = i === arr.length - 1;
           return (
-            <Stack direction="row">
+            <Stack direction="row" key={i}>
               <Stack alignItems="center">
                 <Box
                   display="inline-block"

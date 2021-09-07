@@ -45,8 +45,8 @@ export default function NewsUpdate() {
     <Card>
       <CardHeader sx={{ mb: 3 }} title="News Update"></CardHeader>
 
-      {list.map(({ title, text, hours, img }) => (
-        <Box mb={3} mx={3} display="flex" alignItems="center">
+      {list.map(({ title, text, hours, img }, i) => (
+        <Box mb={3} mx={3} display="flex" alignItems="center" key={i}>
           <Avatar
             sx={{ borderRadius: "12px", width: 48, height: 48, mr: 2 }}
             src={img.src}

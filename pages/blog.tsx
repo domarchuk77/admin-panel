@@ -25,7 +25,7 @@ export default function Blog() {
 
       <Grid container spacing={3}>
         {[1, 2, 3, 4, 5, 6, 7, 8].map((e, i) => (
-          <Grid item md={i < 3 ? 4 : 3} sm={6} xs={12}>
+          <Grid item md={i < 3 ? 4 : 3} sm={6} xs={12} key={i}>
             <Card>
               <Box
                 component="img"
