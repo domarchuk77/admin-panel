@@ -4,7 +4,6 @@ import palette, { IPalette } from "../palette";
 import Button from "./Button";
 import Input from "./Input";
 import Paper from "./Paper";
-import Typography from "./Typography";
 import typography from "../typography";
 import { TypographyOptions } from "@material-ui/core/styles/createTypography";
 import shape, { Shape } from "../shape";
