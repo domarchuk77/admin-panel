@@ -22,12 +22,14 @@ import Avatar from "@material-ui/core/Avatar";
 import AvatarImg from "../../../pages/Avatar.jpg";
 import Button from "@material-ui/core/Button";
 import { Context } from "../Context";
+import NotFoundIcon from "./NotFound.svg";
 
 const sections = [
   { icon: <DashboardIcon />, name: "Dashboard", href: "/" },
   { icon: <UserIcon />, name: "User", href: "/user" },
   { icon: <ProductIcon />, name: "Product", href: "/product" },
   { icon: <BlogIcon />, name: "Blog", href: "/blog" },
+  { icon: <NotFoundIcon />, name: "Not Found", href: "/404" },
 ];
 
 interface SidebarProps {
@@ -66,7 +68,7 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
         mx={2.5}
         my={5}
       >
-        <Avatar src={user?.photoURL || ''} />
+        <Avatar src={user?.photoURL || ""} />
         <Box ml={2}>
           <Typography variant="subtitle2">{user?.displayName}</Typography>
           <Button disableRipple variant="text" onClick={signOut}>

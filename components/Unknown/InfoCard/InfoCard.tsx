@@ -8,7 +8,7 @@ import SvgIcon from "@material-ui/core/SvgIcon";
 import Typography from "@material-ui/core/Typography";
 
 interface InfoCardProps {
-  icon: string[];
+  Icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
   iconColor: string;
   bgColor: string;
   value: string;
@@ -18,7 +18,7 @@ interface InfoCardProps {
 }
 
 export default function InfoCard({
-  icon,
+  Icon,
   iconColor,
   bgColor,
   value,
@@ -31,7 +31,6 @@ export default function InfoCard({
       elevation={0}
       sx={{
         backgroundColor: bgColor,
-        width: 1,
         color: textColor,
         py: 5,
       }}
@@ -44,27 +43,18 @@ export default function InfoCard({
             borderRadius: "50%",
             width: 64,
             height: 64,
-            backgroundImage: iconBgColor,
+            background: iconBgColor,
           }}
         >
-          <SvgIcon
-            aria-hidden="true"
-            role="img"
-            width={24}
-            height={24}
-            preserveAspectRatio="xMidYMid meet"
-            viewBox="0 0 1024 1024"
-          >
-            {icon.map((e, i) => (
-              <path key={i} d={e} fill={iconColor} />
-            ))}
-          </SvgIcon>
+          <Icon fill={iconColor} />
         </Stack>
         <Stack justifyContent="center">
           <Typography variant="h3" align="center">
             {value}
           </Typography>
-          <Typography variant="subtitle2" align="center">{description}</Typography>
+          <Typography variant="subtitle2" align="center">
+            {description}
+          </Typography>
         </Stack>
       </Stack>
     </Paper>

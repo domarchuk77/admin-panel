@@ -1,15 +1,9 @@
 import GreetingsGirlIcon from "../common/icons/GreetingsGirl.png";
-import { Box, Typography } from "@material-ui/core";
 
 import * as Yup from "yup";
 import React, { useState } from "react";
 import { useFormik, Form, FormikProvider } from "formik";
-import {
-  Stack,
-  TextField,
-  IconButton,
-  InputAdornment,
-} from "@material-ui/core";
+
 import { LoadingButton } from "@material-ui/lab";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
@@ -22,6 +16,12 @@ import firebase from "firebase";
 import { useContext } from "react";
 import { Context } from "../components/Unknown/Context";
 import { useEffect } from "react";
+import Box from "@material-ui/system/Box";
+import TextField from "@material-ui/core/TextField";
+import Stack from "@material-ui/core/Stack";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
 
 const Link = styled(BasicLink)(() => ({
   textDecoration: "none",
@@ -40,6 +40,7 @@ export default function Login() {
       }),
     []
   );
+
   const signIn = async ({
     email,
     password,
@@ -78,9 +79,6 @@ export default function Login() {
 
   const { errors, touched, values, handleSubmit, getFieldProps } = formik;
 
-  const handleShowPassword = () => {
-    setShowPassword((show) => !show);
-  };
   return (
     <Box>
       <FormikProvider value={formik}>
@@ -92,7 +90,7 @@ export default function Login() {
               type="email"
               label="Email address"
               {...getFieldProps("email")}
-              error={Boolean(touched.email && errors.email)}
+              error={!!(touched.email && errors.email)}
               helperText={touched.email && errors.email}
             />
 
@@ -105,7 +103,10 @@ export default function Login() {
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton onClick={handleShowPassword} edge="end">
+                    <IconButton
+                      onClick={() => setShowPassword(!showPassword)}
+                      edge="end"
+                    >
                       {showPassword ? (
                         <VisibilityIcon />
                       ) : (
@@ -115,7 +116,7 @@ export default function Login() {
                   </InputAdornment>
                 ),
               }}
-              error={Boolean(touched.password && errors.password)}
+              error={!!(touched.password && errors.password)}
               helperText={touched.password && errors.password}
             />
           </Stack>

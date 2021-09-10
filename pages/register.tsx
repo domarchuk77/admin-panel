@@ -1,28 +1,35 @@
-import LeavingGirlIcon from "../common/icons/LeavingGirl.png";
-import { Box, Typography } from "@material-ui/core";
-
+import { useContext, useState } from "react";
+import firebase from "firebase";
 import * as Yup from "yup";
-import { useState } from "react";
 import { useFormik, Form, FormikProvider } from "formik";
-import {
-  Stack,
-  TextField,
-  IconButton,
-  InputAdornment,
-} from "@material-ui/core";
+import BasicLink from "next/link";
+
+import { Context } from "../components/Unknown/Context";
+import AuthLayout from "../Layouts/AuthLayout";
+
+import Box from "@material-ui/core/Box";
+import Stack from "@material-ui/core/Stack";
+import TextField from "@material-ui/core/TextField";
+import IconButton from "@material-ui/core/IconButton";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Typography from "@material-ui/core/Typography";
 import { LoadingButton } from "@material-ui/lab";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
-import BasicLink from "next/link";
 import { styled } from "@material-ui/styles";
-import { useContext } from "react";
-import { Context } from "../components/Unknown/Context";
-import AuthLayout from "../Layouts/AuthLayout";
-import firebase from "firebase";
+
+import LeavingGirlIcon from "../common/icons/LeavingGirl.png";
 
 const Link = styled(BasicLink)(() => ({
   textDecoration: "none",
 }));
+
+interface SignIn {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+}
 
 export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
@@ -44,17 +51,7 @@ export default function Register() {
     password: Yup.string().required("Password is required"),
   });
 
-  const signIn = async ({
-    firstName,
-    lastName,
-    email,
-    password,
-  }: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    password: string;
-  }) => {
+  const signIn = async ({ firstName, lastName, email, password }: SignIn) => {
     try {
       await firebase.auth().createUserWithEmailAndPassword(email, password);
       await firebase.auth().currentUser?.updateProfile({

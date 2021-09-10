@@ -35,7 +35,6 @@ export const overridesTheme = createTheme({
 export const theme = merge(
   Paper(overridesTheme),
   Button(overridesTheme),
-  Typography(overridesTheme),
   Input(overridesTheme),
   Card(overridesTheme),
   overridesTheme

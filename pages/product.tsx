@@ -5,7 +5,8 @@ import Stack from "@material-ui/core/Stack";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
 import AuthenticatedLayout from "../Layouts/AuthenticatedLayout";
-import BootsImg from "./Boots.jpg";
+import BootsImg from "../common/icons/Boots.jpg";
+import EventCard from "../components/Unknown/EventCard";
 
 export default function Product() {
   const list = [
@@ -15,7 +16,7 @@ export default function Product() {
       img: BootsImg,
       colors: ["rgb(24, 144, 255)", "#00AB55", "#000000", "rgb(24, 144, 255)"],
       event: {
-        name: "new",
+        text: "new",
         bgcolor: "rgb(24, 144, 255)",
       },
     },
@@ -31,7 +32,7 @@ export default function Product() {
         "rgb(24, 144, 255)",
       ],
       event: {
-        name: "new",
+        text: "new",
         bgcolor: "rgb(24, 144, 255)",
       },
     },
@@ -42,7 +43,7 @@ export default function Product() {
       img: BootsImg,
       colors: ["#00AB55", "#000000"],
       event: {
-        name: "sale",
+        text: "sale",
         bgcolor: "rgb(255, 72, 66)",
       },
     },
@@ -66,7 +67,7 @@ export default function Product() {
       img: BootsImg,
       colors: ["#00AB55", "#000000", "rgb(24, 144, 255)"],
       event: {
-        name: "new",
+        text: "new",
         bgcolor: "rgb(24, 144, 255)",
       },
     },
@@ -77,7 +78,7 @@ export default function Product() {
       img: BootsImg,
       colors: ["#000000"],
       event: {
-        name: "sale",
+        text: "sale",
         bgcolor: "rgb(255, 72, 66)",
       },
     },
@@ -93,22 +94,8 @@ export default function Product() {
           <Grid item xs={12} sm={6} md={3} key={i}>
             <Paper sx={{ overflow: "hidden", position: "relative" }}>
               {event && (
-                <Box
-                  px={1}
-                  bgcolor={event?.bgcolor}
-                  position="absolute"
-                  top={16}
-                  right={16}
-                  borderRadius="8px"
-                >
-                  <Typography
-                    variant="overline"
-                    color="common.white"
-                    letterSpacing={0}
-                    sx={{ textTransform: "uppercase" }}
-                  >
-                    {event?.name}
-                  </Typography>
+                <Box position="absolute" top={16} right={16}>
+                  <EventCard {...event} color="common.white" uppercase />
                 </Box>
               )}
               <Box component="img" src={img.src} alt={name} />
