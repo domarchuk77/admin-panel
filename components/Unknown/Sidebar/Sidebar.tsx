@@ -10,7 +10,6 @@ import Typography from "@material-ui/core/Typography";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import { ITheme } from "../../../common/theme/overrides";
-import useStyles from "./useStyles";
 
 import DashboardIcon from "./Dashboard.svg";
 import UserIcon from "./User.svg";
@@ -19,7 +18,6 @@ import BlogIcon from "./Blog.svg";
 
 import Stack from "@material-ui/core/Stack";
 import Avatar from "@material-ui/core/Avatar";
-import AvatarImg from "../../../pages/Avatar.jpg";
 import Button from "@material-ui/core/Button";
 import { Context } from "../Context";
 import NotFoundIcon from "./NotFound.svg";
@@ -28,8 +26,8 @@ import { alpha, useTheme } from "@material-ui/system";
 
 const sections = [
   { icon: <DashboardIcon />, name: "Dashboard", href: "/" },
-  { icon: <UserIcon />, name: "User", href: "/users" },
-  { icon: <ProductIcon />, name: "Product", href: "/products" },
+  { icon: <UserIcon />, name: "Users", href: "/users" },
+  { icon: <ProductIcon />, name: "Products", href: "/products" },
   { icon: <BlogIcon />, name: "Blog", href: "/blog" },
   { icon: <NotFoundIcon />, name: "Not Found", href: "/404" },
 ];

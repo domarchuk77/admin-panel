@@ -124,8 +124,8 @@ export default function User() {
           >
             <Typography variant="subtitle1">Not found</Typography>
             <Typography variant="body2">
-              No results found for <strong>"{inputValue}"</strong>. Try checking
-              for typos or using complete words.
+              No results found for <strong>&quot;{inputValue}&quot;</strong>.
+              Try checking for typos or using complete words.
             </Typography>
           </Stack>
         )}

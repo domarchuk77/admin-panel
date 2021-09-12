@@ -62,7 +62,7 @@ export default function Product() {
                       >
                         ${price}
                       </Typography>
-                      <Typography variant="subtitle1">{" "}${sale}</Typography>
+                      <Typography variant="subtitle1">&nbsp;${sale}</Typography>
                     </Stack>
                   ) : (
                     <Typography variant="subtitle1">${price}</Typography>
