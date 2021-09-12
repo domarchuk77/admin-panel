@@ -34,7 +34,6 @@ const PRIMARY = {
   dark: "#007B55",
   darker: "#005249",
   contrastText: "#fff",
-  main_08: alpha("#00AB55", 0.08),
 };
 const SECONDARY = {
   lighter: "#D6E4FF",
@@ -123,14 +122,14 @@ interface Grey extends Color {
   500_80: string;
 }
 
-interface IBackground extends TypeBackground {
+interface Background extends TypeBackground {
   neutral: string;
 }
 
 export interface IPalette extends Palette {
   gradients: Gradients;
   grey: Grey;
-  background: IBackground;
+  background: Background;
 }
 
 export default palette;

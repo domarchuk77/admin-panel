@@ -1,5 +1,3 @@
-// ----------------------------------------------------------------------
-
 import { createTheme } from "@material-ui/core";
 import { ITheme } from ".";
 

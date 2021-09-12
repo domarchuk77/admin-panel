@@ -13,11 +13,6 @@ const ReactApexChart = dynamic(() => import("react-apexcharts"), {
 const CHART_HEIGHT = 392;
 const LEGEND_HEIGHT = 72;
 
-const series = [
-  { name: "Series 1", data: [80, 50, 30, 40, 100, 20] },
-  { name: "Series 2", data: [20, 30, 40, 80, 20, 80] },
-  { name: "Series 3", data: [44, 76, 78, 13, 43, 10] },
-];
 const ChartWrapperStyle = styled("div")(({ theme }) => ({
   height: CHART_HEIGHT,
   "& .apexcharts-canvas svg": {
@@ -35,7 +30,22 @@ const ChartWrapperStyle = styled("div")(({ theme }) => ({
   },
 }));
 
-export default function CurrentSubject() {
+interface CurrentSubjectProps {
+  series1: number[];
+  series2: number[];
+  series3: number[];
+}
+
+export default function CurrentSubject({
+  series1,
+  series2,
+  series3,
+}: CurrentSubjectProps) {
+  const series = [
+    { name: "Series 1", data: series1 },
+    { name: "Series 2", data: series2 },
+    { name: "Series 3", data: series3 },
+  ];
   const chartOptions = merge(BaseOptionChart(), {
     stroke: { width: 2 },
     fill: { opacity: 0.48 },

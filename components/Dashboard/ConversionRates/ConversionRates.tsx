@@ -10,24 +10,37 @@ const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
 
-export default function ConversionRates() {
-  const percent = "+43";
+interface ConversionRatesProps {
+  facebook: number[];
+  instagram: number[];
+  twitter: number[];
+  linkedin: number[];
+  comparison: string;
+}
+
+export default function ConversionRates({
+  facebook,
+  instagram,
+  twitter,
+  linkedin,
+  comparison,
+}: ConversionRatesProps) {
   const series = [
     {
-      name: "Marine Sprite",
-      data: [44, 55, 41, 37, 22, 43, 21],
+      name: "Facebook",
+      data: facebook,
     },
     {
-      name: "Striking Calf",
-      data: [53, 32, 33, 52, 13, 43, 32],
+      name: "Instagram",
+      data: instagram,
     },
     {
-      name: "Tank Picture",
-      data: [12, 17, 11, 9, 15, 11, 20],
+      name: "Twitter",
+      data: twitter,
     },
     {
-      name: "Bucket Slope",
-      data: [9, 7, 5, 8, 6, 9, 4],
+      name: "Linkedin",
+      data: linkedin,
     },
   ];
   const options = merge(BaseOptionChart(), {
@@ -70,7 +83,7 @@ export default function ConversionRates() {
     <Card>
       <CardHeader
         title="Conversion Rates"
-        subheader={`(${percent}%) than last year`}
+        subheader={`(${comparison}%) than last year`}
       />
       <Box px={3}>
         <ReactApexChart

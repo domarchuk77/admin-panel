@@ -1,4 +1,4 @@
-import { createTheme, Theme } from "@material-ui/core";
+import { createTheme } from "@material-ui/core";
 import { ITheme } from ".";
 
 export default function Button(theme: ITheme) {

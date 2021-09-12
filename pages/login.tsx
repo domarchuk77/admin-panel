@@ -1,4 +1,4 @@
-import GreetingsGirlIcon from "../common/icons/GreetingsGirl.png";
+import GreetingsGirlIcon from "../assets/icons/GreetingsGirl.png";
 
 import * as Yup from "yup";
 import React, { useState } from "react";
@@ -9,7 +9,7 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import BasicLink from "next/link";
 import { styled } from "@material-ui/styles";
-import AuthLayout from "../Layouts/AuthLayout";
+import AuthLayout from "../components/Unknown/AuthLayout";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import firebase from "firebase";
@@ -22,6 +22,7 @@ import Stack from "@material-ui/core/Stack";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
+import Head from "next/head";
 
 const Link = styled(BasicLink)(() => ({
   textDecoration: "none",
@@ -34,7 +35,7 @@ export default function Login() {
   useEffect(
     () =>
       setAlert({
-        message: "You can go under demo data or register your account",
+        message: "You can sign in with demo data or register your account",
         severity: "info",
         show: true,
       }),
@@ -81,6 +82,9 @@ export default function Login() {
 
   return (
     <Box>
+      <Head>
+        <title>Login</title>
+      </Head>
       <FormikProvider value={formik}>
         <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
           <Stack spacing={3}>

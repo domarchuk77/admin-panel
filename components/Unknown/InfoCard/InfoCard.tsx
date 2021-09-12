@@ -1,14 +1,11 @@
-import ButtonBase from "@material-ui/core/ButtonBase";
-import Box from "@material-ui/core/Box";
+import { FunctionComponent, SVGProps } from "react";
+
 import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import React from "react";
 import Stack from "@material-ui/core/Stack";
-import SvgIcon from "@material-ui/core/SvgIcon";
 import Typography from "@material-ui/core/Typography";
 
 interface InfoCardProps {
-  Icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  icon: FunctionComponent<SVGProps<SVGSVGElement>>;
   iconColor: string;
   bgColor: string;
   value: string;
@@ -18,13 +15,13 @@ interface InfoCardProps {
 }
 
 export default function InfoCard({
-  Icon,
   iconColor,
   bgColor,
   value,
   description,
   textColor,
   iconBgColor,
+  ...props
 }: InfoCardProps) {
   return (
     <Paper
@@ -39,14 +36,12 @@ export default function InfoCard({
         <Stack
           alignItems="center"
           justifyContent="center"
-          sx={{
-            borderRadius: "50%",
-            width: 64,
-            height: 64,
-            background: iconBgColor,
-          }}
+          borderRadius="50%"
+          height={64}
+          width={64}
+          sx={{ background: iconBgColor }}
         >
-          <Icon fill={iconColor} />
+          <props.icon fill={iconColor} />
         </Stack>
         <Stack justifyContent="center">
           <Typography variant="h3" align="center">

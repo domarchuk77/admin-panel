@@ -11,7 +11,7 @@ const useStyles = makeStyles(() =>
     "@global": {
       ".apexcharts-tooltip,.apexcharts-xaxistooltip": {
         border: "0 !important",
-        boxShadow: `${customShadows.z24} !important`,
+        boxShadow: `${theme.customShadows.z24} !important`,
         color: `${theme.palette.text.primary} !important`,
         borderRadius: `${shape.borderRadiusSm}px !important`,
         backgroundColor: `${theme.palette.background.default} !important`,

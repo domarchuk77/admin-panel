@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Dispatch, SetStateAction, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
@@ -16,52 +16,49 @@ import DashboardIcon from "./Dashboard.svg";
 import UserIcon from "./User.svg";
 import ProductIcon from "./Product.svg";
 import BlogIcon from "./Blog.svg";
-import LogoIcon from "./Logo.png";
+
 import Stack from "@material-ui/core/Stack";
 import Avatar from "@material-ui/core/Avatar";
 import AvatarImg from "../../../pages/Avatar.jpg";
 import Button from "@material-ui/core/Button";
 import { Context } from "../Context";
 import NotFoundIcon from "./NotFound.svg";
+import firebase from "firebase";
+import { alpha, useTheme } from "@material-ui/system";
 
 const sections = [
   { icon: <DashboardIcon />, name: "Dashboard", href: "/" },
-  { icon: <UserIcon />, name: "User", href: "/user" },
-  { icon: <ProductIcon />, name: "Product", href: "/product" },
+  { icon: <UserIcon />, name: "User", href: "/users" },
+  { icon: <ProductIcon />, name: "Product", href: "/products" },
   { icon: <BlogIcon />, name: "Blog", href: "/blog" },
   { icon: <NotFoundIcon />, name: "Not Found", href: "/404" },
 ];
 
 interface SidebarProps {
   isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
-  const [currentPage, setCurrentPage] = React.useState("");
   const isDesktop = useMediaQuery(({ breakpoints }: ITheme) =>
     breakpoints.up("lg")
   );
-  const { signOut, user } = React.useContext(Context);
+  const { user } = useContext(Context);
   const router = useRouter();
-
-  useEffect(() => {
-    setCurrentPage(router.pathname);
-  }, [router.pathname]);
+  const theme = useTheme();
 
   return (
     <Drawer
       open={isOpen}
       variant={isDesktop ? "permanent" : "temporary"}
       onClose={() => setIsOpen(false)}
-      //
       sx={{ width: 280, height: "100vh" }}
       PaperProps={{ sx: { width: 280, height: "100vh" } }}
     >
       <Stack
         direction="row"
         alignItems="center"
-        bgcolor="rgb(244, 246, 248)"
+        bgcolor="grey.200"
         px={2.5}
         py={2}
         borderRadius="12px"
@@ -71,14 +68,18 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
         <Avatar src={user?.photoURL || ""} />
         <Box ml={2}>
           <Typography variant="subtitle2">{user?.displayName}</Typography>
-          <Button disableRipple variant="text" onClick={signOut}>
+          <Button
+            disableRipple
+            variant="text"
+            onClick={() => firebase.auth().signOut()}
+          >
             Sign Out
           </Button>
         </Box>
       </Stack>
       <List>
         {sections.map(({ icon, name, href }, i) => {
-          const isActive = href === currentPage;
+          const isActive = href === router.pathname;
           return (
             <Link href={href} key={i}>
               <ListItemButton
@@ -88,7 +89,9 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
                   borderRightStyle: "solid",
                   borderRightWidth: isActive ? 3 : 0,
                   color: isActive ? "primary.main" : "grey.600",
-                  bgcolor: isActive ? "primary.main_08" : "unset",
+                  bgcolor: isActive
+                    ? alpha(theme.palette.primary.main, 0.08)
+                    : "unset",
                 }}
                 onClick={() => setIsOpen(false)}
               >

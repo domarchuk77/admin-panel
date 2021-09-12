@@ -1,11 +1,11 @@
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import firebase from "firebase";
 import * as Yup from "yup";
 import { useFormik, Form, FormikProvider } from "formik";
 import BasicLink from "next/link";
 
 import { Context } from "../components/Unknown/Context";
-import AuthLayout from "../Layouts/AuthLayout";
+import AuthLayout from "../components/Unknown/AuthLayout";
 
 import Box from "@material-ui/core/Box";
 import Stack from "@material-ui/core/Stack";
@@ -18,7 +18,8 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import { styled } from "@material-ui/styles";
 
-import LeavingGirlIcon from "../common/icons/LeavingGirl.png";
+import LeavingGirlIcon from "../assets/icons/LeavingGirl.png";
+import Head from "next/head";
 
 const Link = styled(BasicLink)(() => ({
   textDecoration: "none",
@@ -82,6 +83,9 @@ export default function Register() {
 
   return (
     <Box>
+      <Head>
+        <title>Register</title>
+      </Head>
       <FormikProvider value={formik}>
         <Form onSubmit={handleSubmit}>
           <Stack spacing={2.5}>

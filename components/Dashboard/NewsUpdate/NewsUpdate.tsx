@@ -5,7 +5,7 @@ import CardHeader from "@material-ui/core/CardHeader";
 import Stack from "@material-ui/core/Stack";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
-import StreetImg from "../../../common/icons/Street.jpg";
+import StreetImg from "../../../assets/icons/Street.jpg";
 
 const list = [
   {
@@ -56,7 +56,7 @@ export default function NewsUpdate() {
 
             <Typography
               variant="body2"
-              color="#637381"
+              color="grey.600"
               noWrap
               sx={{ maxWidth: { lg: 700, xl: 900 } }}
             >
@@ -65,7 +65,7 @@ export default function NewsUpdate() {
           </Stack>
           <Typography
             variant="caption"
-            color="rgb(99, 115, 129)"
+            color="grey.600"
             sx={{ flexShrink: 0, ml: 2.5 }}
           >{`about ${hours} hours`}</Typography>
         </Box>

@@ -1,32 +1,39 @@
 import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import { upperCase } from "lodash";
-import React from "react";
 
 interface EventCardProps {
-  bgcolor: string;
-  color: string;
   text: string;
-  uppercase?: boolean;
 }
 
-export default function EventCard({
-  bgcolor,
-  color,
-  text,
-  uppercase,
-}: EventCardProps) {
+export default function EventCard({ text }: EventCardProps) {
+  const getStyles = () => {
+    switch (text) {
+      case "Active":
+        return {
+          color: "rgb(34, 154, 22)",
+          bgcolor: "rgba(84, 214, 44, 0.16)",
+        };
+      case "Banned":
+        return {
+          color: "rgb(183, 33, 54)",
+          bgcolor: "rgba(255, 72, 66, 0.16)",
+        };
+      case "SALE":
+        return { bgcolor: "rgb(255, 72, 66)", color: "common.white" };
+      case "NEW":
+        return { bgcolor: "rgb(24, 144, 255)", color: "common.white" };
+      default:
+        return null;
+    }
+  };
   return (
     <Box
       px={1}
       py={0.25}
-      bgcolor={bgcolor}
       borderRadius="8px"
-      color={color}
       fontSize={12}
       fontWeight={700}
-      sx={{ textTransform: uppercase ? "uppercase" : "none" }}
-      display='inline-block'
+      display="inline-block"
+      {...getStyles()}
     >
       {text}
     </Box>

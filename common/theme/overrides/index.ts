@@ -1,11 +1,11 @@
 import { createTheme, Theme, ThemeOptions } from "@material-ui/core/styles";
 import { merge } from "lodash";
+
 import palette, { IPalette } from "../palette";
 import Button from "./Button";
 import Input from "./Input";
 import Paper from "./Paper";
 import typography from "../typography";
-import { TypographyOptions } from "@material-ui/core/styles/createTypography";
 import shape, { Shape } from "../shape";
 import shadows, { CustomShadows, customShadows } from "../shadows";
 import breakpoints from "../breakpoints";

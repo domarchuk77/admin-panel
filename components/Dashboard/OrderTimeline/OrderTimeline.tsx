@@ -56,7 +56,7 @@ export default function OrderTimeline() {
 
                 {!isLast && (
                   <Box
-                    bgcolor="#C4CDD5"
+                    bgcolor="grey.400"
                     width={2}
                     height={35}
                     display="inline-block"
@@ -65,7 +65,7 @@ export default function OrderTimeline() {
               </Stack>
               <Box mx={2} my={0.75}>
                 <Typography variant="subtitle2">{name}</Typography>
-                <Typography variant="caption" color="#637381">
+                <Typography variant="caption" color="grey.600">
                   {date}
                 </Typography>
               </Box>

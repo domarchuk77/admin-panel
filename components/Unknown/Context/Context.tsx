@@ -1,4 +1,11 @@
-import React, { useEffect } from "react";
+import {
+  createContext,
+  Dispatch,
+  FC,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import firebase from "firebase";
 
 import Snackbar from "@material-ui/core/Snackbar";
@@ -7,13 +14,10 @@ import { AlertColor } from "@material-ui/core/Alert";
 import CloseIcon from "@material-ui/icons/Close";
 import LoadingPage from "../LoadingPage";
 import { IconButton } from "@material-ui/core";
-import Box from "@material-ui/core/Box";
 
-export const Context = React.createContext<ContextProps>({} as ContextProps);
+export const Context = createContext<ContextProps>({} as ContextProps);
 interface ContextProps {
-  setAlert: React.Dispatch<React.SetStateAction<AlertProps>>;
-  signIn: () => void;
-  signOut: any;
+  setAlert: Dispatch<SetStateAction<AlertProps>>;
   user?: User | null;
 }
 
@@ -27,16 +31,15 @@ interface User {
   photoURL: string | null;
 }
 
-const ContextProvider: React.FC = ({ children }) => {
-  const [user, setUser] = React.useState<User | null | undefined>(undefined);
-  const [alert, setAlert] = React.useState<AlertProps>({
+const ContextProvider: FC = ({ children }) => {
+  const [user, setUser] = useState<User | null | undefined>(undefined);
+  const [alert, setAlert] = useState<AlertProps>({
     show: false,
     severity: "error",
     message: "",
   });
 
   useEffect(() => {
-    // firebase.initializeApp(firebaseConfig);
     firebase.auth().onAuthStateChanged((user) => {
       console.log("user:", user);
       if (user) {
@@ -45,32 +48,9 @@ const ContextProvider: React.FC = ({ children }) => {
     });
   }, []);
 
-  const signIn = () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider);
-  };
-  // firebase
-  //   .auth()
-  //   .signInWithEmailAndPassword("error@gmail.com", "error@gmail.com")
-  //   .then((userCredential) => {
-  //     // Signed in
-  //     console.log("userCredential:", userCredential);
-  //     // ...
-  //   })
-  //   .catch((error) => {
-  //     console.log("error:", error);
-  //   });
-  // firebase.auth().currentUser?.updateProfile({
-  //   displayName: "Jane Q. User",
-  //   photoURL: "https://example.com/jane-q-user/profile.jpg",
-  // });
-
-  const signOut = () => {
-    firebase.auth().signOut();
-  };
   if (user === undefined) return <LoadingPage />;
   return (
-    <Context.Provider value={{ setAlert, signOut, user, signIn }}>
+    <Context.Provider value={{ setAlert, user }}>
       {children}
       <Snackbar
         open={alert.show}

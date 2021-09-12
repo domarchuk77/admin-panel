@@ -1,8 +1,7 @@
-import React from "react";
+import { ReactElement, ReactNode, useEffect } from "react";
 import { FirebaseAppProvider } from "reactfire";
 import type { AppProps as BasicAppProps } from "next/app";
 import Head from "next/head";
-import { useEffect } from "react";
 import { NextPage as BasicNextPage } from "next";
 
 import ThemeConfig from "../common/theme";
@@ -19,7 +18,7 @@ const firebaseConfig = {
 };
 
 type NextPage = BasicNextPage & {
-  getLayout?: (page: React.ReactElement) => React.ReactNode;
+  getLayout?: (page: ReactElement) => ReactNode;
 };
 
 type AppProps = BasicAppProps & {

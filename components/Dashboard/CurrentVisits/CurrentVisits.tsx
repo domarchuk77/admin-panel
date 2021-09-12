@@ -1,10 +1,11 @@
+import { merge } from "lodash";
+import dynamic from "next/dynamic";
+
 import { styled } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
-import { merge } from "lodash";
-import dynamic from "next/dynamic";
-import React from "react";
+
 import BaseOptionChart from "../../Unknown/BaseOptionChart";
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
@@ -21,12 +22,16 @@ const ChartWrapperStyle = styled("div")(({ theme }) => ({
   },
 }));
 
-export default function CurrentVisits() {
-  const series = [14, 23, 21];
+interface CurrentVisitsProps {
+  series: number[];
+}
+
+export default function CurrentVisits({ series }: CurrentVisitsProps) {
   const options = merge(BaseOptionChart(), {
     fill: {
       opacity: 0.7,
     },
+    labels: ["Mobile", "Desktop", "Laptop", "Tablet"],
   });
   return (
     <Card>
