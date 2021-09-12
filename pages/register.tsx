@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import firebase from "firebase";
 import * as Yup from "yup";
 import { useFormik, Form, FormikProvider } from "formik";
@@ -163,8 +163,7 @@ export default function Register() {
         color="grey.600"
         sx={{ mt: 2.5 }}
       >
-        Already have an account?&nbsp;
-        <Link href="/login">Sign In</Link>
+        Already have an account? <Link href="/login">Sign In</Link>
       </Typography>
     </Box>
   );

@@ -2,6 +2,11 @@ import AndroidIcon from "../../../assets/icons/Android.svg";
 import AppleIcon from "../../../assets/icons/Apple.svg";
 import MicrosoftIcon from "../../../assets/icons/Microsoft.svg";
 import BugIcon from "../../../assets/icons/Bug.svg";
+import cover1 from "../icons/covers/cover_1.jpg";
+import cover2 from "../icons/covers/cover_2.jpg";
+import cover3 from "../icons/covers/cover_3.jpg";
+import cover4 from "../icons/covers/cover_4.jpg";
+import cover5 from "../icons/covers/cover_5.jpg";
 
 export const dashboardData = {
   infoCards: [
@@ -87,43 +92,69 @@ export const dashboardData = {
   newsUpdate: {
     news: [
       {
-        img: "",
+        img: cover1.src,
         title: "Customer Metrics Facilitator",
         description:
           "Consectetur porro omnis impedit voluptas repudiandae qui ipsum ut. Officiis qui reiciendis ducimus velit. Aspernatur ex beatae ducimus officiis nihil iure porro nemo.",
-        date: "",
+        date: "3",
       },
       {
-        img: "",
+        img: cover2.src,
         title: "Dynamic Applications Strategist",
         description:
           "Optio commodi omnis aspernatur. Natus molestias ut et porro laudantium voluptatem asperiores. Cupiditate aliquid rerum adipisci.",
-        date: "",
+        date: "7",
       },
       {
-        img: "",
+        img: cover3.src,
         title: "Dynamic Usability Representative",
         description:
-          "Qui et ipsam. Placeat laudantium consequatur numquam qui a. Consectetur porro omnis impedit voluptas repudiandae qui ipsum ut. Officiis qui reiciendis ducimus velit. Aspernatur ex beatae ducimus officiis nihil iure porro nemo.",
-        date: "",
+          "Eos repudiandae modi nulla quibusdam natus occaecati eos. Quia ut minus aut tempora sint sint architecto. Qui distinctio sint at ut vero nisi ea. Vero culpa labore a sit aut sit voluptate corporis. Eos voluptatum reiciendis. Et tempore veritatis cupiditate est perspiciatis illum.",
+        date: "13",
       },
       {
-        img: "",
+        img: cover4.src,
         title: "Legacy Paradigm Officer",
         description:
-          "Qui et ipsam. Placeat laudantium consequatur numquam qui a. Consectetur porro omnis impedit voluptas repudiandae qui ipsum ut. Officiis qui reiciendis ducimus velit. Aspernatur ex beatae ducimus officiis nihil iure porro nemo.",
-        date: "",
+          "Est qui nobis debitis nesciunt quisquam quia omnis non. Provident sint ipsam et ea. Qui quia similique omnis et vitae quas ea accusantium. Dolore dolorem sed et minus libero suscipit. Recusandae ipsum quasi odio delectus. In velit in iste omnis autem debitis.",
+        date: "20",
       },
       {
-        img: "",
+        img: cover5.src,
         title: "Legacy Program Agent",
         description:
-          "Qui et ipsam. Placeat laudantium consequatur numquam qui a. Consectetur porro omnis impedit voluptas repudiandae qui ipsum ut. Officiis qui reiciendis ducimus velit. Aspernatur ex beatae ducimus officiis nihil iure porro nemo.",
-        date: "",
+          "In praesentium aut. Aut provident earum nesciunt dolores et neque. Non eum cum dolorum sint sit ratione illum. Autem quasi quaerat et explicabo quisquam nesciunt. Voluptatem enim eos vel dicta est ut ratione quibusdam.",
+        date: "23",
       },
     ],
   },
   orderTime: {
-    list: [{ circleColor: "", title: "", date: "" }],
+    list: [
+      {
+        circleColor: "#00AB55",
+        name: "Departed country of origin",
+        date: "29 Apr 2021 22:58",
+      },
+      {
+        circleColor: "rgb(84, 214, 44)",
+        name: " Accepted for linehaul transportation",
+        date: "22 Apr 2021 22:52",
+      },
+      {
+        circleColor: "rgb(24, 144, 255)",
+        name: "Dispatched from sorting center",
+        date: "19 Apr 2021 12:32",
+      },
+      {
+        circleColor: "rgb(255, 193, 7)",
+        name: "Arrived at sorting center",
+        date: "15 Apr 2021 15:52",
+      },
+      {
+        circleColor: "rgb(255, 72, 66)",
+        name: "Parcel dispatched",
+        date: "10 Apr 2021 14:12",
+      },
+    ],
   },
 };

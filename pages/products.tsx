@@ -1,4 +1,5 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
+import Head from "next/head";
 
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
@@ -9,7 +10,6 @@ import Typography from "@material-ui/core/Typography";
 import AuthenticatedLayout from "../components/Unknown/AuthenticatedLayout";
 import EventCard from "../components/Unknown/EventCard";
 import { products } from "../assets/mocks/data/products";
-import Head from "next/head";
 
 export default function Product() {
   return (
@@ -62,7 +62,7 @@ export default function Product() {
                       >
                         ${price}
                       </Typography>
-                      <Typography variant="subtitle1">&nbsp;${sale}</Typography>
+                      <Typography variant="subtitle1">{" "}${sale}</Typography>
                     </Stack>
                   ) : (
                     <Typography variant="subtitle1">${price}</Typography>

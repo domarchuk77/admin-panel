@@ -53,11 +53,7 @@ export default function Blog() {
                   </Box>
                 </Box>
                 <CardContent>
-                  <Typography
-                    variant="caption"
-                    sx={{ mb: 1 }}
-                    color="rgb(145, 158, 171)"
-                  >
+                  <Typography variant="caption" sx={{ mb: 1 }} color="grey.500">
                     {date}
                   </Typography>
                   <Typography
@@ -76,7 +72,7 @@ export default function Blog() {
                   </Typography>
                   <Stack
                     justifyContent="flex-end"
-                    color="rgb(145, 158, 171)"
+                    color="grey.500"
                     direction="row"
                     alignItems="center"
                     flexWrap="wrap"

@@ -1,28 +1,28 @@
-import GreetingsGirlIcon from "../assets/icons/GreetingsGirl.png";
-
+import { useEffect, useContext } from "react";
 import * as Yup from "yup";
+import Head from "next/head";
 import React, { useState } from "react";
+import BasicLink from "next/link";
 import { useFormik, Form, FormikProvider } from "formik";
+import firebase from "firebase";
 
 import { LoadingButton } from "@material-ui/lab";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
-import BasicLink from "next/link";
 import { styled } from "@material-ui/styles";
 import AuthLayout from "../components/Unknown/AuthLayout";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import firebase from "firebase";
-import { useContext } from "react";
-import { Context } from "../components/Unknown/Context";
-import { useEffect } from "react";
 import Box from "@material-ui/system/Box";
 import TextField from "@material-ui/core/TextField";
 import Stack from "@material-ui/core/Stack";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import Head from "next/head";
+
+import { Context } from "../components/Unknown/Context";
+
+import GreetingsGirlIcon from "../assets/icons/GreetingsGirl.png";
 
 const Link = styled(BasicLink)(() => ({
   textDecoration: "none",
@@ -159,7 +159,7 @@ export default function Login() {
         color="grey.600"
         sx={{ mt: 2.5 }}
       >
-        Don’t have an account?&nbsp;
+        Don’t have an account?{" "}
         <Link href="/register">Get started</Link>
       </Typography>
     </Box>

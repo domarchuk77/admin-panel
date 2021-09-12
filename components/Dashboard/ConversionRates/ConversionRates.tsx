@@ -1,9 +1,10 @@
+import { merge } from "lodash";
+import dynamic from "next/dynamic";
+
 import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
-import { merge } from "lodash";
-import dynamic from "next/dynamic";
-import React from "react";
+
 import BaseOptionChart from "../../Unknown/BaseOptionChart";
 
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {

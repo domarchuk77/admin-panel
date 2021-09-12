@@ -1,14 +1,16 @@
+import Head from "next/head";
+import Link from "next/link";
+
 import Button from "@material-ui/core/Button";
 import Stack from "@material-ui/core/Stack";
 import Typography from "@material-ui/core/Typography";
-import Head from "next/head";
-import Link from "next/link";
-import React from "react";
+import Box from "@material-ui/core/Box";
+
 import NotFoundIcon from "../assets/icons/NotFound.svg";
 
 export default function Error() {
   return (
-    <>
+    <Box>
       <Head>
         <title>Not Found</title>
       </Head>
@@ -36,6 +38,6 @@ export default function Error() {
           </Button>
         </Link>
       </Stack>
-    </>
+    </Box>
   );
 }

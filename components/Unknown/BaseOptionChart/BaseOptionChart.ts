@@ -1,10 +1,7 @@
 import { createStyles, makeStyles } from "@material-ui/styles";
-import { useTheme } from "@material-ui/core/styles";
-import { ITheme } from "../../common/theme/overrides";
-import { theme } from "../../common/theme/overrides";
-import palette from "../../common/theme/palette";
-import { customShadows } from "../../common/theme/shadows";
-import shape from "../../common/theme/shape";
+
+import { theme } from "../../../common/theme/overrides";
+import shape from "../../../common/theme/shape";
 
 const useStyles = makeStyles(() =>
   createStyles({

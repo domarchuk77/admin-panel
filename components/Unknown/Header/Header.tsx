@@ -121,7 +121,7 @@ export default function Header({ setIsOpen }: HeaderProps) {
 
               <Box>
                 <Typography variant="subtitle2">
-                  {title}&nbsp;
+                  {title}{" "}
                   <Typography
                     variant="body2"
                     color="grey.600"

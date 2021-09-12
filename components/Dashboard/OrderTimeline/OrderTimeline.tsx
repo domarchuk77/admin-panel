@@ -6,47 +6,23 @@ import Stack from "@material-ui/core/Stack";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
 
-const list = [
-  {
-    bgcolor: "#00AB55",
-    name: "Departed country of origin",
-    date: "29 Apr 2021 22:52",
-  },
-  {
-    bgcolor: "rgb(84, 214, 44)",
-    name: " Accepted for linehaul transportation",
-    date: "22 Apr 2021 22:52",
-  },
-  {
-    bgcolor: "rgb(24, 144, 255)",
-    name: "Dispatched from sorting center",
-    date: "19 Apr 2021 22:52",
-  },
-  {
-    bgcolor: "rgb(255, 193, 7)",
-    name: "Arrived at sorting center",
-    date: "15 Apr 2021 22:52",
-  },
-  {
-    bgcolor: "rgb(255, 72, 66)",
-    name: "Parcel dispatched",
-    date: "10 Apr 2021 22:52",
-  },
-];
+interface OrderTimelineProps {
+  list: Array<{ circleColor: string; date: string; name: string }>;
+}
 
-export default function OrderTimeline() {
+export default function OrderTimeline({ list }: OrderTimelineProps) {
   return (
     <Card>
       <CardHeader title="Order Timeline" />
       <CardContent>
-        {list.map(({ bgcolor, date, name }, i, arr) => {
+        {list.map(({ circleColor, date, name }, i, arr) => {
           const isLast = i === arr.length - 1;
           return (
             <Stack direction="row" key={i}>
               <Stack alignItems="center">
                 <Box
                   display="inline-block"
-                  bgcolor={bgcolor}
+                  bgcolor={circleColor}
                   width={12}
                   height={12}
                   borderRadius="50%"

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ReactNode, useMemo, useState } from "react";
+import { ChangeEvent, ReactNode, useMemo, useState } from "react";
 
 import InputAdornment from "@material-ui/core/InputAdornment";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
@@ -124,9 +124,8 @@ export default function User() {
           >
             <Typography variant="subtitle1">Not found</Typography>
             <Typography variant="body2">
-              No results found for &nbsp;
-              <strong>"{inputValue}"</strong>. Try checking for typos or using
-              complete words.
+              No results found for <strong>"{inputValue}"</strong>. Try checking
+              for typos or using complete words.
             </Typography>
           </Stack>
         )}

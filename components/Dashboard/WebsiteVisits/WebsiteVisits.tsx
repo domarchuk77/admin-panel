@@ -1,9 +1,10 @@
+import { merge } from "lodash";
+import ReactApexChart from "react-apexcharts";
+
 import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
-import { merge } from "lodash";
-import React from "react";
-import ReactApexChart from "react-apexcharts";
+
 import BaseOptionChart from "../../Unknown/BaseOptionChart";
 
 interface WebsiteVisitsProps {
