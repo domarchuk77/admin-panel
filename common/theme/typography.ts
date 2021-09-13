@@ -1,5 +1,3 @@
-// ----------------------------------------------------------------------
-
 import { TypographyOptions } from "@material-ui/core/styles/createTypography";
 
 function pxToRem(value: number) {

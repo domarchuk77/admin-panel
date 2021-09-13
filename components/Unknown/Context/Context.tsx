@@ -41,7 +41,6 @@ const ContextProvider: FC = ({ children }) => {
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
-      console.log("user:", user);
       if (user) {
         setUser({ displayName: user.displayName, photoURL: user.photoURL });
       } else setUser(null);
