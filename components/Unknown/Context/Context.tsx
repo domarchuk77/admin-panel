@@ -16,6 +16,7 @@ import LoadingPage from "../LoadingPage";
 import { IconButton } from "@material-ui/core";
 
 export const Context = createContext<ContextProps>({} as ContextProps);
+
 interface ContextProps {
   setAlert: Dispatch<SetStateAction<AlertProps>>;
   user?: User | null;

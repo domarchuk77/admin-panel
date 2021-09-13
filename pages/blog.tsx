@@ -2,10 +2,9 @@ import { ReactNode } from "react";
 import Head from "next/head";
 
 import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import AuthenticatedLayout from "../components/Unknown/AuthenticatedLayout";
 import Grid from "@material-ui/core/Grid";
 
+import AuthenticatedLayout from "../components/Unknown/AuthenticatedLayout";
 import { blog } from "../assets/mocks/data/blog";
 import BlogItem from "../components/Blog/BlogItem";
 
@@ -15,9 +14,6 @@ export default function Blog() {
       <Head>
         <title>Blog</title>
       </Head>
-      <Typography variant="h4" sx={{ mb: 5 }}>
-        Blog
-      </Typography>
 
       <Grid container spacing={3}>
         {blog.map((data, i) => (
@@ -31,5 +27,5 @@ export default function Blog() {
 }
 
 Blog.getLayout = (page: ReactNode) => (
-  <AuthenticatedLayout>{page}</AuthenticatedLayout>
+  <AuthenticatedLayout title="Blog">{page}</AuthenticatedLayout>
 );

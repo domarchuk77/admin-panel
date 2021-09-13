@@ -1,4 +1,5 @@
 import { ChangeEvent, ReactNode, useMemo, useState } from "react";
+import Head from "next/head";
 
 import InputAdornment from "@material-ui/core/InputAdornment";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
@@ -11,10 +12,10 @@ import LoupeIcon from "@material-ui/icons/Search";
 import TablePagination from "@material-ui/core/TablePagination";
 
 import AuthenticatedLayout from "../components/Unknown/AuthenticatedLayout";
-import { users } from "../assets/mocks/data/users";
 import { ITheme } from "../common/theme/overrides";
-import Head from "next/head";
 import UsersTable from "../components/Users/UsersTable";
+
+import { users } from "../assets/mocks/data/users";
 
 const SearchStyle = styled(OutlinedInput)(({ theme }) => {
   const iTheme = theme as ITheme;
@@ -56,9 +57,6 @@ export default function Users() {
       <Head>
         <title>Users</title>
       </Head>
-      <Typography variant="h4" sx={{ mb: 5 }}>
-        Users
-      </Typography>
 
       <Paper>
         <Stack direction="row" px={3}>
@@ -110,5 +108,5 @@ export default function Users() {
 }
 
 Users.getLayout = (page: ReactNode) => (
-  <AuthenticatedLayout>{page}</AuthenticatedLayout>
+  <AuthenticatedLayout title="Users">{page}</AuthenticatedLayout>
 );

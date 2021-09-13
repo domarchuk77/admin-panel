@@ -1,7 +1,7 @@
 import { useEffect, useContext } from "react";
 import * as Yup from "yup";
 import Head from "next/head";
-import React, { useState } from "react";
+import { useState } from "react";
 import BasicLink from "next/link";
 import { useFormik, Form, FormikProvider } from "formik";
 import firebase from "firebase";
@@ -28,6 +28,18 @@ const Link = styled(BasicLink)(() => ({
   textDecoration: "none",
 }));
 
+const validationSchema = Yup.object().shape({
+  email: Yup.string()
+    .email("Email must be a valid email address")
+    .required("Email is required"),
+  password: Yup.string().required("Password is required"),
+});
+
+interface SignIn {
+  email: string;
+  password: string;
+}
+
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -42,13 +54,7 @@ export default function Login() {
     []
   );
 
-  const signIn = async ({
-    email,
-    password,
-  }: {
-    email: string;
-    password: string;
-  }) => {
+  const signIn = async ({ email, password }: SignIn) => {
     try {
       await firebase.auth().signInWithEmailAndPassword(email, password);
     } catch ({ message }) {
@@ -57,13 +63,6 @@ export default function Login() {
       setIsSubmitting(false);
     }
   };
-
-  const validationSchema = Yup.object().shape({
-    email: Yup.string()
-      .email("Email must be a valid email address")
-      .required("Email is required"),
-    password: Yup.string().required("Password is required"),
-  });
 
   const formik = useFormik({
     initialValues: {
@@ -159,8 +158,7 @@ export default function Login() {
         color="grey.600"
         sx={{ mt: 2.5 }}
       >
-        Don’t have an account?{" "}
-        <Link href="/register">Get started</Link>
+        Don’t have an account? <Link href="/register">Get started</Link>
       </Typography>
     </Box>
   );

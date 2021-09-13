@@ -1,9 +1,9 @@
-import React from "react";
 import Paper from "@material-ui/core/Paper";
 import Stack from "@material-ui/core/Stack";
 import Box from "@material-ui/core/Box";
-import EventCard from "../../Unknown/EventCard";
 import Typography from "@material-ui/core/Typography";
+
+import EventCard from "../../Unknown/EventCard";
 
 interface ProductProps {
   img: string;

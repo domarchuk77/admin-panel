@@ -4,7 +4,6 @@ import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
 import Stack from "@material-ui/core/Stack";
 import Typography from "@material-ui/core/Typography";
-import React from "react";
 
 interface OrderTimelineProps {
   list: Array<{ circleColor: string; date: string; name: string }>;

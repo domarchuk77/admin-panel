@@ -31,7 +31,7 @@ export default function BlogItem({
 }: BlogItemProps) {
   return (
     <Card>
-      <Box component="img" alt="" src={img} width={1} height={1} />
+      <Box component="img" alt={title} src={img} width={1} height={1} />
 
       <Box
         position="relative"

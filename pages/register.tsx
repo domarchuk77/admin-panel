@@ -3,6 +3,7 @@ import firebase from "firebase";
 import * as Yup from "yup";
 import { useFormik, Form, FormikProvider } from "formik";
 import BasicLink from "next/link";
+import Head from "next/head";
 
 import { Context } from "../components/Unknown/Context";
 import AuthLayout from "../components/Unknown/AuthLayout";
@@ -19,11 +20,25 @@ import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import { styled } from "@material-ui/styles";
 
 import LeavingGirlIcon from "../assets/icons/LeavingGirl.png";
-import Head from "next/head";
 
 const Link = styled(BasicLink)(() => ({
   textDecoration: "none",
 }));
+
+const validationSchema = Yup.object().shape({
+  firstName: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("First name required"),
+  lastName: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Last name required"),
+  email: Yup.string()
+    .email("Email must be a valid email address")
+    .required("Email is required"),
+  password: Yup.string().required("Password is required"),
+});
 
 interface SignIn {
   firstName: string;
@@ -36,21 +51,6 @@ export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { setAlert } = useContext(Context);
-
-  const validationSchema = Yup.object().shape({
-    firstName: Yup.string()
-      .min(2, "Too Short!")
-      .max(50, "Too Long!")
-      .required("First name required"),
-    lastName: Yup.string()
-      .min(2, "Too Short!")
-      .max(50, "Too Long!")
-      .required("Last name required"),
-    email: Yup.string()
-      .email("Email must be a valid email address")
-      .required("Email is required"),
-    password: Yup.string().required("Password is required"),
-  });
 
   const signIn = async ({ firstName, lastName, email, password }: SignIn) => {
     try {

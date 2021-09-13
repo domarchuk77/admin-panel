@@ -4,7 +4,6 @@ import Head from "next/head";
 
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
 
 import AuthenticatedLayout from "../components/Unknown/AuthenticatedLayout";
 import InfoCard from "../components/Unknown/InfoCard/InfoCard";
@@ -29,9 +28,6 @@ export default function Dashboard() {
       <Head>
         <title>Dashboard</title>
       </Head>
-      <Typography variant="h4" sx={{ mb: 5 }}>
-        Hi, Welcome back
-      </Typography>
 
       <Grid container spacing={3}>
         {dashboardData.infoCards.map((data, i) => (
@@ -69,5 +65,5 @@ export default function Dashboard() {
 }
 
 Dashboard.getLayout = (page: ReactNode) => (
-  <AuthenticatedLayout>{page}</AuthenticatedLayout>
+  <AuthenticatedLayout title="Hi, Welcome back">{page}</AuthenticatedLayout>
 );

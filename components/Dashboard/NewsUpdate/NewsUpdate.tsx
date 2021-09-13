@@ -4,7 +4,6 @@ import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import Stack from "@material-ui/core/Stack";
 import Typography from "@material-ui/core/Typography";
-import React from "react";
 
 interface NewsUpdateProps {
   news: Array<{

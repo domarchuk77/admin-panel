@@ -1,4 +1,3 @@
-import React from "react";
 import router from "next/router";
 
 import Box from "@material-ui/core/Box";
@@ -14,6 +13,7 @@ import GoogleIcon from "../../../assets/icons/Google.svg";
 import LoadingPage from "../LoadingPage";
 import { Context } from "../Context";
 import firebase from "firebase";
+import { useContext } from "react";
 
 interface AuthLayoutProps {
   img: string;
@@ -25,7 +25,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({
   img,
   greetings,
 }) => {
-  const { user } = React.useContext(Context);
+  const { user } = useContext(Context);
   const signIn = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider);
