@@ -2,5 +2,5 @@
   "rules": {
     "react/display-name": "off"
   },
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals" 
 }

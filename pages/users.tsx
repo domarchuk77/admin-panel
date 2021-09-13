@@ -8,19 +8,13 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/system/Box";
 import styled from "@material-ui/system/styled";
 import LoupeIcon from "@material-ui/icons/Search";
-import Avatar from "@material-ui/core/Avatar";
 import TablePagination from "@material-ui/core/TablePagination";
-import Table from "@material-ui/core/Table";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableBody from "@material-ui/core/TableBody";
-import TableRow from "@material-ui/core/TableRow";
 
 import AuthenticatedLayout from "../components/Unknown/AuthenticatedLayout";
 import { users } from "../assets/mocks/data/users";
 import { ITheme } from "../common/theme/overrides";
-import EventCard from "../components/Unknown/EventCard";
 import Head from "next/head";
+import UsersTable from "../components/Users/UsersTable";
 
 const SearchStyle = styled(OutlinedInput)(({ theme }) => {
   const iTheme = theme as ITheme;
@@ -39,7 +33,7 @@ const SearchStyle = styled(OutlinedInput)(({ theme }) => {
   };
 });
 
-export default function User() {
+export default function Users() {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [inputValue, setInputValue] = useState("");
@@ -79,39 +73,11 @@ export default function User() {
             }
           />
         </Stack>
-        <Box overflow="auto">
-          <Table sx={{ minWidth: 800 }}>
-            <TableHead>
-              <TableCell>
-                <Box ml={2}>Name</Box>
-              </TableCell>
-              <TableCell>Company</TableCell>
-              <TableCell>Role</TableCell>
-              <TableCell>Verified</TableCell>
-              <TableCell>Status</TableCell>
-            </TableHead>
-            <TableBody>
-              {filterUserList
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map(({ name, role, company, verified, status, avatar }, i) => (
-                  <TableRow key={i}>
-                    <TableCell>
-                      <Stack direction="row" alignItems="center" spacing={2}>
-                        <Avatar src={avatar} />
-                        <Typography variant="subtitle2">{name}</Typography>
-                      </Stack>
-                    </TableCell>
-                    <TableCell>{company}</TableCell>
-                    <TableCell>{role}</TableCell>
-                    <TableCell>{verified}</TableCell>
-                    <TableCell>
-                      <EventCard text={status} />
-                    </TableCell>
-                  </TableRow>
-                ))}
-            </TableBody>
-          </Table>
-        </Box>
+        <UsersTable
+          userList={filterUserList}
+          rowsPerPage={rowsPerPage}
+          page={page}
+        />
         {filterUserList.length === 0 && (
           <Stack
             alignItems="center"
@@ -143,6 +109,6 @@ export default function User() {
   );
 }
 
-User.getLayout = (page: ReactNode) => (
+Users.getLayout = (page: ReactNode) => (
   <AuthenticatedLayout>{page}</AuthenticatedLayout>
 );
